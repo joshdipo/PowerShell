@@ -19,7 +19,7 @@
 
 ## Basic Commands
 
-```md
+```powershell
 #----------------------#
 # 'More info' commands #
 #----------------------#
@@ -48,7 +48,7 @@ get-alias command_name
 get-member
 ```
 
-```ps
+```powershell
 #--------------------------------#
 # Files, Folders and Directories #
 #--------------------------------#
@@ -65,7 +65,7 @@ cd ..
 # Go up a directory
 ```
 
-```ps
+```powershell
 #--------#
 # Basics #
 #--------#
@@ -76,7 +76,7 @@ cls
 ```
 
 
-```ps
+```powershell
 #-----------#
 # Variables #
 #-----------#
@@ -94,7 +94,7 @@ $variable_name.property_name
 # Returns the contents of the property for that variable. Properties can be nested.
 ```
 
-```ps
+```powershell
 #----#
 #    #
 #----#
