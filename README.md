@@ -23,7 +23,7 @@
 
 ## Usage
 
-- *Tab* autocomplete - Typing the start of what you want an pressing "Tab" will start cycling through all posible commands that start with what you have typed in.
+- *Tab* autocomplete - Typing the start of what you want an pressing 'Tab' will start cycling through all posible commands that start with what you have typed in.
 - You can write multiple commands on the same line by seperating them with a `;`. (doesn't use objects)
 - By putting `( )` around a command that is returning an object(s), you can change the object. For example, if you 'get' a process you can then call the `kill()` method on it, like you would call methods on objects in C# `(Process_name).kill()`
 
@@ -31,6 +31,7 @@
 
 - Try to keep an object for as long as possible
 - Always try to keep the number of objects down by filtering early on in a chain.
+- Filter left, Format right
 
 <br>
 
@@ -42,9 +43,11 @@ A pipeline is a series of commands connected by pipeline operators `|`. Each pip
 Command-1 | Command-2 | Command-3
 ```
 
+`$_` represents the current pieline object.
+
 ## Objects
 
-Every action in powershell happens within the context of objects. As data moves from one command to the next, it moves as one or more identifiable objects.
+When a cmdlet runs, it returns an object. Every action in powershell happens within the context of objects. As data moves from one command to the next, it moves as one or more identifiable objects.
 
 An object is a collection of data and is made up of three types of data: the objects type, its methods, and its properties.
 
@@ -61,12 +64,13 @@ An object is a collection of data and is made up of three types of data: the obj
 
 ```powershell
 #-----------------------------#
-# help / 'More info' commands #
+# Help / 'More info' commands #
 #-----------------------------#
 
 # Help #
 
 Get-Help -Name name_of_command
+# Returns a list of commands 
 
 
 
@@ -87,14 +91,25 @@ Get-Command -Noun noun_name*
 Get-Command -Verb verb_name -Noun noun_name*
 # Returns a list of commands with both a matching verb and noun.
 
+Get-Command -Name command_name*
+# Returns a list of commands matching the input.
 
+
+
+# More info #
 
 get-alias command_name
 # Returns the full name for the command that you've provided the alias for
 
 
 
-get-member
+returned_object(s) | get-member or gm
+# Returns a list containing the type of object, and all events, methods, and properties that the object has.
+
+
+
+Get-Command -ParameterType object_type
+# Returns a list of all cmdlets that operate on this type.
 ```
 
 ```powershell
@@ -115,6 +130,9 @@ cd path
 
 cd ..
 # Go up a directory
+
+cat file_path
+# View the contents of a file
 ```
 
 ```powershell
